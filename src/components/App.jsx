@@ -4,20 +4,14 @@ import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Section } from './Section/Section';
 import { Notification } from './Notification/Notification';
 
-export const App = () => {  
-  return (   
-      <Counter good={0} neutral={0} bad={0} />    
-    
-  );
-};
 
-class Counter extends Component {
+export class App extends Component {
   static defaultProps = {
     good: 0,
     neutral: 0,
-    bad: 0
+    bad: 0,
   };
- 
+
   state = {
     good: this.props.good,
     neutral: this.props.neutral,
@@ -28,19 +22,17 @@ class Counter extends Component {
     const t = evt.target.innerHTML;
     this.setState(state => ({
       [t]: state[t] + 1,
-    }));    
+    }));
   };
 
-  countTotalFeedback = () => {    
+  countTotalFeedback = () => {
     return this.state.good + this.state.neutral + this.state.bad;
   };
-  countPositiveFeedbackPercentage = () => {   
-    return (
-      Math.round(
-        (this.state.good /
-          (this.state.good + this.state.neutral + this.state.bad)) *
-          100
-      )
+  countPositiveFeedbackPercentage = () => {
+    return Math.round(
+      (this.state.good /
+        (this.state.good + this.state.neutral + this.state.bad)) *
+        100
     );
   };
 
@@ -63,7 +55,7 @@ class Counter extends Component {
               positivePercentage={this.countPositiveFeedbackPercentage()}
             />
           ) : (
-            <Notification message="There is no feedback"/>
+            <Notification message="There is no feedback" />
           )}
         </Section>
       </div>
